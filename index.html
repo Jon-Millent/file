@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id="pp" type="file">
+	<img src="" id="gg" alt="">
+</body>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		var read = new FileReader();
+		//read.readAsDataURL(this.files[0]);
+
+		pp.onchange = function(){
+			
+			read.readAsDataURL(this.files[0]);
+			read.onload=function(){
+				document.getElementById('gg').setAttribute('src',this.result)
+			}
+
+			var formData = new FormData();
+			formData.append('image', this.files[0]);
+			$.ajax({//'http://192.168.0.118/wedding/model/home_modelc.php?action=adduser_list',
+				//'http://localhost/tttt/file.php'
+				url: 'http://localhost/tttt/file.php',
+				type: 'post',
+				cache: false,
+				data: formData,
+				processData: false,
+				contentType: false,
+				success : function(data){
+					console.log(data)
+				//loadUp.success();
+				},
+				error : function(data){
+					console.log(data)
+				//loadUp.error();
+				}
+			})
+		}
+	}
+</script>
+</html>
