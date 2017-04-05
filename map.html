@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    html,
+    body,
+    #container {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+</body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=">
+</script>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.0.0/jquery.min.js">
+</script>
+<script type="text/javascript">
+window.onload = function() {
+
+	function mapDog(address){
+		var kk = address;
+	    var map = new BMap.Map("container");
+	    map.centerAndZoom(kk, 12);
+	    map.enableScrollWheelZoom(); //启用滚轮放大缩小，默认禁用
+	    map.enableContinuousZoom(); //启用地图惯性拖拽，默认禁用
+
+	    map.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
+	    map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
+	    map.addControl(new BMap.OverviewMapControl({
+	        isOpen: true,
+	        anchor: BMAP_ANCHOR_BOTTOM_RIGHT
+	    })); //右下角，打开
+
+	    var localSearch = new BMap.LocalSearch(map);
+	    localSearch.enableAutoViewport(); //允许自动调节窗体大小
+	    searchByStationName(kk)
+	    function searchByStationName() {
+	        map.clearOverlays(); //清空原来的标注
+	        var keyword = kk;
+	        localSearch.setSearchCompleteCallback(function(searchResult) {
+	            var poi = searchResult.getPoi(0);
+	            poi.point.lng + "," + poi.point.lat;
+	            map.centerAndZoom(poi.point, 13);
+	            var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat)); // 创建标注，为要查询的地方对应的经纬度
+	            //map.addOverlay(marker);
+	            
+	            var infoWindow = new BMap.InfoWindow("<p style='font-size:14px;'>" + address+ "</p>");
+	            map.openInfoWindow(infoWindow, map.getCenter());      // 打开信息窗口
+	            marker.addEventListener("click", function() {
+	                this.openInfoWindow(infoWindow);
+	            });
+	            // marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+	        });
+	        localSearch.search(kk);
+	    }	
+	}
+	mapDog('郑州市金水区中州大道1188号凯德广场F2')
+}
+</script>
+
+</html>
