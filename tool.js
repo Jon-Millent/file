@@ -11,3 +11,15 @@ function GetRequest(names) {
      }   
      return names ? theRequest[name] : theRequest;   
   } 
+//获取两日期之间相差的天数
+function getNowDays(time){
+     var ttime = new Date(time);
+     var ntime = new Date();
+
+     var best = new Date();
+
+     best.setTime(ttime.getTime() - ntime.getTime());
+
+     return best.getTime() / 86400000;
+
+}
