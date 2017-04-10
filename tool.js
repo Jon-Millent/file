@@ -23,3 +23,8 @@ function getNowDays(time){
      return best.getTime() / 86400000;
 
 }
+//获取本地化时间
+function getLocationTime(time){
+     var gtime = new Date(time);
+     return gtime.getFullYear() + '年' + (gtime.getMonth()+1) + '月' + gtime.getDay() +　'日'
+}
