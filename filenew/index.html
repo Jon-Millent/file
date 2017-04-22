@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片压缩</title>
+</head>
+<body>
+	<input type="file" id="test" multiple>
+	<img src="" alt="" id="gg">
+	<h1 id="ss">sss</h1>
+</body>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.onprogress.js"></script>
+<script type="text/javascript">
+
+
+window.onload = function(){
+
+	var fileBox = new FormData();
+	$('#test').change(function(){
+		for(var i=0; i<this.files.length; i++){
+			fileBox.append('file'+i,this.files[i]);
+		}
+	})
+	$('#ss').click(function(){
+		$.ajax({
+			url: '1.php',
+			type: 'post',
+			cache: false,
+			data: fileBox,
+			processData: false,
+			contentType: false,
+		    success: function(){},
+		    error: function(){},
+		    progress: function(e) {
+		        //make sure we can compute the length
+		        if(e.lengthComputable) {
+		            //calculate the percentage loaded
+		            var pct = (e.loaded / e.total) * 100;
+
+		            //log percentage loaded
+		            console.log(pct);
+		        }
+		        //this usually happens when Content-Length isn't set
+		        else {
+		            console.warn('Content Length not reported!');
+		        }
+		    }
+		});	
+	})
+	
+}
+
+</script>
+</html>
