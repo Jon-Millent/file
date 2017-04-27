@@ -29,6 +29,15 @@
 		getLocationTime : function(time){
 		     var gtime = new Date(time || new Date());
 		     return gtime.getFullYear() + '年' + (gtime.getMonth()+1) + '月' + gtime.getDay() +　'日'
+		},
+		iGetInnerText:function(testStr) {
+			var resultStr = testStr.replace(/\ +/g, ""); //去掉空格
+			resultStr = testStr.replace(/[ ]/g, "");    //去掉空格
+			resultStr = testStr.replace(/[\r\n]/g, ""); //去掉回车换行
+			return resultStr;
+	    	},
+		getRandomNumber:function(a,b){
+			return Math.ceil((Math.random()*(b-a)-1)+a);
 		}
 	}
 	Date.prototype.Format = function (fmt) { //author: meizz
