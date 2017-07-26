@@ -1,4 +1,4 @@
-	//封装自定义指令 tip
+	//封装自定义指令 tap
 	Vue.directive('tap', {
 		update : function(){
 			console.log('ssssss')
