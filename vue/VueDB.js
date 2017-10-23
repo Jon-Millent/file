@@ -28,11 +28,28 @@ class VueDB{
   }
 
   getItem (key) {
+    var now = '';
     if(window.localStorage){
-      return window.localStorage.getItem(key);
+      now = window.localStorage.getItem(key);
     }else{
-      return cookie.get(key);
+      now = cookie.get(key);
     }
+
+    return {
+      toString () {
+        return now;
+      },
+      toJson () {
+        var tryObj = {};
+        try{
+          tryObj = JSON.parse(now)
+        }catch (e){
+          tryObj = null;
+        }
+        return tryObj;
+      }
+    }
+
   }
 
   getItemOnce (key) {
