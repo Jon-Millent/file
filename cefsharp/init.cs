@@ -5,7 +5,7 @@ public void InitBrowser() {
     CefSettings settings = new CefSettings();
     settings.CefCommandLineArgs.Add("disable-gpu", "1");
 
-    browser = new ChromiumWebBrowser("http://114.115.208.88:8080/spterp/admin/index.html");
+    browser = new ChromiumWebBrowser("...");
 
     this.Controls.Add(browser);
 
