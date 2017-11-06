@@ -1,8 +1,8 @@
 
 class VueEvent{
   constructor(){
-    window.evnet = window.evnet || {};
-    this.evnet = window.evnet;
+    window.private_evnet = window.private_evnet || {};
+    this.evnet = window.private_evnet;
   }
   $on(eventName, callBack) {
     this.evnet[eventName] = this.evnet[eventName] || [];
