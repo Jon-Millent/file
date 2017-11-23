@@ -6,6 +6,6 @@
     <!--[if lt IE 9]><script> window.location.href='http://www.goody.com.cn/2014/updatebrowser/'; </script> <![endif]-->
     <script type="text/javascript" src="https://cdn.bootcss.com/bluebird/3.5.0/bluebird.min.js"></script>
   ```
-* 使用sass `npm install --save-dev sass-loader` `npm install --save-dev node-sass`
+* 使用sass `cnpm install --save-dev sass-loader` `cnpm install --save-dev node-sass`
 * express-generator express 的构建工具 `express-generator`
   * 文章 https://github.com/lin-xin/blog/issues/21
