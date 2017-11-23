@@ -8,4 +8,4 @@
   ```
 * 使用sass `npm install --save-dev sass-loader` `npm install --save-dev node-sass`
 * express-generator express 的构建工具 `express-generator`
-  * 文章 `https://github.com/lin-xin/blog/issues/21`
+  * 文章 https://github.com/lin-xin/blog/issues/21
